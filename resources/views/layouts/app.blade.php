@@ -16,16 +16,16 @@
 
 <body>
     <header>
+        @stack('styles')
         @yield('nav')
     </header>
 
-    <main class="flex-grow flex items-center justify-center py-10">
-        @yield('content')
-    </main>
+    @yield('content')
+    @stack('scripts')
 
-    <footer class="py-4 text-center text-gray-500 border-t bg-white">
+    {{-- <footer class="py-4 text-center text-gray-500 border-t bg-white">
         &copy; {{ date('Y') }} Brothers Pro
-    </footer>
+    </footer> --}}
 
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
