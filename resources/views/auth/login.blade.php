@@ -1,50 +1,76 @@
-@extends('layouts.guest')
-@section('title', 'Login')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Login - FioRio Tourism</title>
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url('http://127.0.0.1:8000/upload/bg.png') no-repeat center center/cover;
+}
 
-@push('styles')
-    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
-@endpush
+.overlay {
+    background: rgba(0,0,0,0.7);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-@section('content')
-    <div class="login-container" style="background: url('{{ asset('upload/login-bg.jpg') }}') no-repeat center center/cover;">
-        <div class="login-card">
-            <form action="{{ route('login') }}" method="POST" id="loginForm" novalidate>
-                @csrf
+.form-box {
+    background: rgba(0,0,0,0.8);
+    padding: 40px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    color: white;
+}
 
-                <h1>Welcome Back</h1>
-                <p class="subtitle">Login to continue your journey</p>
+.form-box h2 {
+    margin-bottom: 20px;
+}
 
-                <div class="form-group">
-                    <input type="email" name="email" id="email" value="{{ old('email') }}" placeholder=" ">
-                    <label>Email Address</label>
-                    <small class="error-message"></small>
-                </div><br>
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+}
 
-                @error('email')
-                    <p class="server-error">{{ $message }}</p>
-                @enderror
+button {
+    background: red;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
-                <div class="form-group">
-                    <input type="password" name="password" id="password" placeholder=" " autocomplete="new-password">
-                    <label>Password</label>
-                    <span class="toggle-password" id="togglePassword">👁</span>
-                    <small class="error-message"></small>
-                </div>
+button:hover {
+    background: darkred;
+}
 
-                @error('password')
-                    <p class="server-error">{{ $message }}</p>
-                @enderror
+a {
+    color: red;
+    text-decoration: none;
+}
+</style>
+</head>
 
-                <button type="submit">Sign In</button>
-
-                <p class="register-link">
-                    Don’t have an account? <a href="{{ route('register') }}">Create account</a>
-                </p>
-            </form>
-        </div>
+<body>
+<div class="overlay">
+    <div class="form-box">
+        <h2>Login</h2>
+        <form>
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="/register">Sign Up</a></p>
     </div>
-@endsection
-
-@push('scripts')
-    <script src="{{ asset('js/login.js') }}"></script>
-@endpush
+</div>
+</body>
+</html>

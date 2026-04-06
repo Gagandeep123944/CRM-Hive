@@ -1,75 +1,78 @@
-@extends('layouts.guest')
-@section('title', 'Join the Adventure')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sign Up - FioRio Tourism</title>
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url('http://127.0.0.1:8000/upload/bg.png') no-repeat center center/cover;
+}
 
-@push('styles')
-    <link rel="stylesheet" href="{{ asset('css/register.css') }}">
-@endpush
+.overlay {
+    background: rgba(0,0,0,0.7);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-@section('content')
-    <div class="register-wrapper">
-        <div class="register-container">
-            <div class="register-image-section">
-                <img src="{{ asset('upload/register-bg.jpg') }}" alt="adventure">
-                <div class="image-overlay">
-                    <h3>The World Awaits 🌌</h3>
-                    <p>Unlock exclusive access to premium features.</p>
-                </div>
-            </div>
+.form-box {
+    background: rgba(0,0,0,0.85);
+    padding: 40px;
+    border-radius: 10px;
+    width: 320px;
+    text-align: center;
+    color: white;
+}
 
-            <div class="register-form-section">
-                <div class="register-card">
-                    <h2>Create Account</h2>
-                    <p class="subtitle">Join our community today</p>
+.form-box h2 {
+    margin-bottom: 20px;
+}
 
-                    <form action="{{ route('register') }}" method="POST" id="registerForm" novalidate>
-                        @csrf
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 5px;
+}
 
-                        <div class="form-group">
-                            <input type="text" name="name" id="name" value="{{ old('name') }}" required
-                                placeholder=" ">
-                            <label>Full Name</label>
-                            @error('name')
-                                <small class="server-error">{{ $message }}</small>
-                            @enderror
-                        </div>
+button {
+    background: red;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
-                        <div class="form-group">
-                            <input type="email" name="email" id="email" value="{{ old('email') }}" required
-                                placeholder=" ">
-                            <label>Email Address</label>
-                            @error('email')
-                                <small class="server-error">{{ $message }}</small>
-                            @enderror
-                        </div>
+button:hover {
+    background: darkred;
+}
 
-                        <div class="form-group">
-                            <input type="password" name="password" id="password" required placeholder=" "
-                                autocomplete="new-password">
-                            <label>Password</label>
-                            <span class="toggle-password" id="togglePasswordReg">👁</span>
-                            @error('password')
-                                <small class="server-error">{{ $message }}</small>
-                            @enderror
-                        </div>
+a {
+    color: red;
+    text-decoration: none;
+}
+</style>
+</head>
 
-                        <div class="form-group">
-                            <input type="password" name="password_confirmation" id="password_confirmation" required
-                                placeholder=" ">
-                            <label>Confirm Password</label>
-                        </div>
-
-                        <button type="submit" class="btn-register">Sign Up Now</button>
-
-                        <p class="login-link">
-                            Already a member? <a href="{{ route('login') }}">Log In</a>
-                        </p>
-                    </form>
-                </div>
-            </div>
-        </div>
+<body>
+<div class="overlay">
+    <div class="form-box">
+        <h2>Sign Up</h2>
+        <form>
+            <input type="text" placeholder="Full Name" required>
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Password" required>
+            <input type="password" placeholder="Confirm Password" required>
+            <button type="submit">Sign Up</button>
+        </form>
+        <p>Already have an account? <a href="/login">Login</a></p>
     </div>
-@endsection
-
-@push('scripts')
-    <script src="{{ asset('js/register.js') }}"></script>
-@endpush
+</div>
+</body>
+</html>

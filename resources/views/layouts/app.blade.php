@@ -18,9 +18,9 @@
 </head>
 
 <body>
-    <header>
+    <!--header>
         <x-navbar brand="Adventure TMS" />
-    </header>
+    </header--->
 
     <main class="content-wrapper">
         @yield('content')
