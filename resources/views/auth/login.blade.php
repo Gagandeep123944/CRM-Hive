@@ -1,103 +1,50 @@
-@extends('layouts.app')
+@extends('layouts.guest')
 @section('title', 'Login')
+
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 @endpush
+
 @section('content')
-    <div class="login">
-    <img src="{{ asset('assets/img/login-bg.png') }}" alt="login image" class="login__img">
+    <div class="login-container" style="background: url('{{ asset('upload/login-bg.jpg') }}') no-repeat center center/cover;">
+        <div class="login-card">
+            <form action="{{ route('login') }}" method="POST" id="loginForm" novalidate>
+                @csrf
 
-    <form action="{{ route('login') }}" method="POST" class="login__form">
-        @csrf
+                <h1>Welcome Back</h1>
+                <p class="subtitle">Login to continue your journey</p>
 
-        <h1 class="login__title">Login</h1>
+                <div class="form-group">
+                    <input type="email" name="email" id="email" value="{{ old('email') }}" placeholder=" ">
+                    <label>Email Address</label>
+                    <small class="error-message"></small>
+                </div><br>
 
-        {{-- Session Status --}}
-        @if (session('status'))
-            <div style="color: green; margin-bottom:10px;">
-                {{ session('status') }}
-            </div>
-        @endif
+                @error('email')
+                    <p class="server-error">{{ $message }}</p>
+                @enderror
 
-        <div class="login__content">
-
-            {{-- Email --}}
-            <div class="login__box">
-                <i class="ri-user-3-line login__icon"></i>
-
-                <div class="login__box-input">
-                    <input
-                        type="email"
-                        name="email"
-                        value="{{ old('email') }}"
-                        required
-                        class="login__input @error('email') is-invalid @enderror"
-                        id="login-email"
-                        placeholder=" "
-                        autocomplete="off"
-                    >
-                    <label for="login-email" class="login__label">Email</label>
+                <div class="form-group">
+                    <input type="password" name="password" id="password" placeholder=" " autocomplete="new-password">
+                    <label>Password</label>
+                    <span class="toggle-password" id="togglePassword">👁</span>
+                    <small class="error-message"></small>
                 </div>
-            </div>
 
-            @error('email')
-                <p style="color:red; font-size:12px;">{{ $message }}</p>
-            @enderror
+                @error('password')
+                    <p class="server-error">{{ $message }}</p>
+                @enderror
 
+                <button type="submit">Sign In</button>
 
-            {{-- Password --}}
-            <div class="login__box">
-                <i class="ri-lock-2-line login__icon"></i>
-
-                <div class="login__box-input">
-                    <input
-                        type="password"
-                        name="password"
-                        required
-                        class="login__input @error('password') is-invalid @enderror"
-                        id="login-pass"
-                        placeholder=" "
-                    >
-                    <label for="login-pass" class="login__label">Password</label>
-                    <i class="ri-eye-off-line login__eye" id="login-eye"></i>
-                </div>
-            </div>
-
-            @error('password')
-                <p style="color:red; font-size:12px;">{{ $message }}</p>
-            @enderror
-
+                <p class="register-link">
+                    Don’t have an account? <a href="{{ route('register') }}">Create account</a>
+                </p>
+            </form>
         </div>
-
-        {{-- Remember + Forgot --}}
-        <div class="login__check">
-            <div class="login__check-group">
-                <input
-                    type="checkbox"
-                    name="remember"
-                    class="login__check-input"
-                    id="login-check"
-                >
-                <label for="login-check" class="login__check-label">Remember me</label>
-            </div>
-
-            {{-- <a href="{{ route('password.request') }}" class="login__forgot">
-                Forgot Password?
-            </a> --}}
-        </div>
-
-        {{-- Submit --}}
-        <button type="submit" class="login__button">Login</button>
-
-        {{-- Register --}}
-        <p class="login__register">
-            Don't have an account?
-            <a href="{{ route('register') }}">Register</a>
-        </p>
-
-    </form>
-</div>
+    </div>
 @endsection
+
 @push('scripts')
-    <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script src="{{ asset('js/login.js') }}"></script>
 @endpush

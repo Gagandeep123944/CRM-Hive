@@ -12,15 +12,20 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
+        @stack('styles')
+
 </head>
 
 <body>
     <header>
-        @stack('styles')
-        @yield('nav')
+        <x-navbar brand="Adventure TMS" />
     </header>
 
-    @yield('content')
+    <main class="content-wrapper">
+        @yield('content')
+    </main>
+
     @stack('scripts')
 
     {{-- <footer class="py-4 text-center text-gray-500 border-t bg-white">

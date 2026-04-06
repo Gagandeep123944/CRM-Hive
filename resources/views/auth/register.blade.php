@@ -1,54 +1,75 @@
-@extends('layouts.app')
-@section('title', 'Register')
+@extends('layouts.guest')
+@section('title', 'Join the Adventure')
+
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/register.css') }}">
+@endpush
+
 @section('content')
-    <div class="w-full max-w-md bg-white rounded-lg shadow-lg p-8">
-        <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Create Account</h2>
-
-        <form action="{{ route('register') }}" method="POST">
-            @csrf
-
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2">Full Name</label>
-                <input type="text" name="name" value="{{ old('name') }}" required
-                    class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 @error('name') border-red-500 @enderror">
-                @error('name')
-                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                @enderror
+    <div class="register-wrapper">
+        <div class="register-container">
+            <div class="register-image-section">
+                <img src="{{ asset('upload/register-bg.jpg') }}" alt="adventure">
+                <div class="image-overlay">
+                    <h3>The World Awaits 🌌</h3>
+                    <p>Unlock exclusive access to premium features.</p>
+                </div>
             </div>
 
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2">Email Address</label>
-                <input type="email" name="email" value="{{ old('email') }}" required
-                    class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 @error('email') border-red-500 @enderror">
-                @error('email')
-                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                @enderror
+            <div class="register-form-section">
+                <div class="register-card">
+                    <h2>Create Account</h2>
+                    <p class="subtitle">Join our community today</p>
+
+                    <form action="{{ route('register') }}" method="POST" id="registerForm" novalidate>
+                        @csrf
+
+                        <div class="form-group">
+                            <input type="text" name="name" id="name" value="{{ old('name') }}" required
+                                placeholder=" ">
+                            <label>Full Name</label>
+                            @error('name')
+                                <small class="server-error">{{ $message }}</small>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <input type="email" name="email" id="email" value="{{ old('email') }}" required
+                                placeholder=" ">
+                            <label>Email Address</label>
+                            @error('email')
+                                <small class="server-error">{{ $message }}</small>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <input type="password" name="password" id="password" required placeholder=" "
+                                autocomplete="new-password">
+                            <label>Password</label>
+                            <span class="toggle-password" id="togglePasswordReg">👁</span>
+                            @error('password')
+                                <small class="server-error">{{ $message }}</small>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <input type="password" name="password_confirmation" id="password_confirmation" required
+                                placeholder=" ">
+                            <label>Confirm Password</label>
+                        </div>
+
+                        <button type="submit" class="btn-register">Sign Up Now</button>
+
+                        <p class="login-link">
+                            Already a member? <a href="{{ route('login') }}">Log In</a>
+                        </p>
+                    </form>
+                </div>
             </div>
-
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2">Password</label>
-                <input type="password" name="password" required
-                    class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 @error('password') border-red-500 @enderror">
-                @error('password')
-                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <div class="mb-6">
-                <label class="block text-gray-700 text-sm font-bold mb-2">Confirm Password</label>
-                <input type="password" name="password_confirmation" required
-                    class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
-            </div>
-
-            <button type="submit"
-                class="w-full bg-green-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-700 transition duration-300">
-                Register
-            </button>
-
-            <p class="text-center text-sm text-gray-600 mt-4">
-                Already have an account? <a href="{{ route('login') }}" class="text-blue-600 hover:underline">Log
-                    In</a>
-            </p>
-        </form>
+        </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('js/register.js') }}"></script>
+@endpush

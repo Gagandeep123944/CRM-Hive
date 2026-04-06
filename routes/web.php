@@ -2,11 +2,16 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\TourController;
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('test');
-});
+    return view('index');
+})->name('home');
+
+Route::get('/about', [PageController::class, 'about'])->name('about');
+Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 
 /** Register */
 Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
@@ -24,6 +29,7 @@ Route::middleware(['auth'])->group(function () {
         return view('dashboard');
     })->name('dashboard');
 
+    Route::resource('tours', TourController::class);
 });
 
 Route::middleware(['admin'])->group(function () {
