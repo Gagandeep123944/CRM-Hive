@@ -1,78 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Sign Up - FioRio Tourism</title>
-<style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: url('http://127.0.0.1:8000/upload/bg.png') no-repeat center center/cover;
-}
+@extends('layouts.app')
 
-.overlay {
-    background: rgba(0,0,0,0.7);
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+@section('title', 'Register')
 
-.form-box {
-    background: rgba(0,0,0,0.85);
-    padding: 40px;
-    border-radius: 10px;
-    width: 320px;
-    text-align: center;
-    color: white;
-}
+@section('bg-image', asset('upload/register-bg.jpg'))
 
-.form-box h2 {
-    margin-bottom: 20px;
-}
+@section('content')
 
-input {
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 5px;
-}
+    <div class="register-container">
+        <div class="register-card">
+            <h2 class="register-title">Register</h2>
 
-button {
-    background: red;
-    color: white;
-    border: none;
-    padding: 10px;
-    width: 100%;
-    border-radius: 5px;
-    cursor: pointer;
-}
+            @if ($errors->any())
+                <div class="register-error-box">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
-button:hover {
-    background: darkred;
-}
+            <form method="POST" action="{{ route('register') }}">
+                @csrf
 
-a {
-    color: red;
-    text-decoration: none;
-}
-</style>
-</head>
+                <div class="register-grid">
+                    <div class="register-form-group">
+                        <label>Name</label>
+                        <input type="text" name="name" value="{{ old('name') }}" required>
+                    </div>
 
-<body>
-<div class="overlay">
-    <div class="form-box">
-        <h2>Sign Up</h2>
-        <form>
-            <input type="text" placeholder="Full Name" required>
-            <input type="email" placeholder="Email" required>
-            <input type="password" placeholder="Password" required>
-            <input type="password" placeholder="Confirm Password" required>
-            <button type="submit">Sign Up</button>
-        </form>
-        <p>Already have an account? <a href="/login">Login</a></p>
+                    <div class="register-form-group">
+                        <label>Email</label>
+                        <input type="email" name="email" value="{{ old('email') }}" required>
+                    </div>
+
+                    <div class="register-form-group">
+                        <label>Password</label>
+                        <input type="password" name="password" required autocomplete="new-password">
+                    </div>
+
+                    <div class="register-form-group">
+                        <label>Confirm Password</label>
+                        <input type="password" name="password_confirmation" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="register-btn">Register</button>
+            </form>
+
+            <p class="register-footer-text">
+                Already have an account?
+                <a href="{{ route('login') }}">Login</a>
+            </p>
+        </div>
     </div>
-</div>
-</body>
-</html>
+
+@endsection

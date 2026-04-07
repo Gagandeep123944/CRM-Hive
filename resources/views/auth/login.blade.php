@@ -1,76 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Login - FioRio Tourism</title>
-<style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: url('http://127.0.0.1:8000/upload/bg.png') no-repeat center center/cover;
-}
+@extends('layouts.app')
 
-.overlay {
-    background: rgba(0,0,0,0.7);
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+@section('title', 'Login')
 
-.form-box {
-    background: rgba(0,0,0,0.8);
-    padding: 40px;
-    border-radius: 10px;
-    width: 300px;
-    text-align: center;
-    color: white;
-}
+@section('bg-image', asset('upload/login-bg.jpg'))
 
-.form-box h2 {
-    margin-bottom: 20px;
-}
+@section('content')
 
-input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: none;
-    border-radius: 5px;
-}
+    <div class="login-container">
+        <div class="login-card">
+            <h2 class="login-title">Login</h2>
 
-button {
-    background: red;
-    color: white;
-    border: none;
-    padding: 10px;
-    width: 100%;
-    border-radius: 5px;
-    cursor: pointer;
-}
+            @if ($errors->any())
+                <div class="error-box">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
-button:hover {
-    background: darkred;
-}
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
 
-a {
-    color: red;
-    text-decoration: none;
-}
-</style>
-</head>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" value="{{ old('email') }}" required>
+                </div>
 
-<body>
-<div class="overlay">
-    <div class="form-box">
-        <h2>Login</h2>
-        <form>
-            <input type="email" placeholder="Email" required>
-            <input type="password" placeholder="Password" required>
-            <button type="submit">Login</button>
-        </form>
-        <p>Don't have an account? <a href="/register">Sign Up</a></p>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="password" required autocomplete="new-password">
+                </div>
+
+                <button type="submit" class="btn-login">Login</button>
+            </form>
+
+            <p class="register-text">
+                Don't have an account?
+                <a href="{{ route('register') }}">Register</a>
+            </p>
+        </div>
     </div>
-</div>
-</body>
-</html>
+
+@endsection
