@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\TourController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\Admin;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -37,4 +38,30 @@ Route::middleware(['admin'])->group(function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
 
+    Route::post('/add_package', [Admin::class, 'add_packages'])->name('packages');
+
+    Route::get('/admin/packages',function(){
+        return view('admin.packages');
+    });
+
+    Route::get('/admin/users',function(){
+        return view('admin.users');
+    });
+
+    Route::get('/admin/reports', function(){
+        return view('admin.reports');
+    });
+
+     Route::get('/admin/projects', function(){
+        return view('admin.projects');
+    });
+
+     Route::get('/admin/add_packages', function(){
+        return view('admin.add_package');
+    });
+
+
 });
+
+
+Route::get('/get_packages', [Admin::class, 'get_packages'])->name('get_packages');
