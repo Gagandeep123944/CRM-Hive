@@ -1,4 +1,30 @@
 document.addEventListener("DOMContentLoaded", function () {
+
+    // ACTIVE INDICATOR MOVE
+const icons = document.querySelectorAll(".nav-icon");
+const indicator = document.getElementById("indicator");
+
+const currentPath = window.location.pathname;
+
+icons.forEach((icon, index) => {
+    const link = icon.closest("a");
+
+    if (link && link.getAttribute("href") === currentPath) {
+        icons.forEach(i => i.classList.remove("active"));
+        icon.classList.add("active");
+
+        indicator.style.left = (index * 52 + 6) + "px";
+    }
+});
+
+// USER DROPDOWN
+const avatar = document.getElementById("avatarBtn");
+const menu = document.querySelector(".dropdown-menu");
+
+avatar?.addEventListener("click", () => {
+    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+});
+
     const isCartPage = window.location.pathname === "/cart";
 
     /** Add to Cart */

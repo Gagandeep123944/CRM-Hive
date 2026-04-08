@@ -71,6 +71,302 @@ body {
     border-top: 1px solid #333;
 }
 
+/*================================= Navbar ====================================*/
+/* NAVBAR */
+.pro-navbar {
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 92%;
+    background: rgba(15,15,20,0.75);
+    backdrop-filter: blur(16px);
+    border-radius: 18px;
+    padding: 10px 20px;
+    border: 1px solid rgba(255,255,255,0.08);
+    z-index: 999;
+}
+
+/* WRAPPER */
+.nav-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* LOGO */
+.brand-logo {
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+/* CENTER NAV */
+.nav-center {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    background: rgba(255,255,255,0.05);
+    padding: 6px;
+    border-radius: 14px;
+}
+
+/* ICON */
+.nav-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #aaa;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.nav-icon:hover {
+    color: #fff;
+}
+
+/* ACTIVE INDICATOR */
+.active-indicator {
+    position: absolute;
+    width: 42px;
+    height: 42px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 12px;
+    top: 6px;
+    left: 6px;
+    transition: 0.3s ease;
+    z-index: 0;
+}
+
+.nav-icon {
+    position: relative;
+    z-index: 1;
+}
+
+/* CART BADGE */
+.cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: red;
+    color: #fff;
+    font-size: 10px;
+    padding: 3px 6px;
+    border-radius: 50%;
+}
+
+/* RIGHT */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* BUTTONS */
+.btn-login {
+    color: #aaa;
+    text-decoration: none;
+}
+
+.btn-signup {
+    background: linear-gradient(135deg, #43e97b, #38f9d7);
+    padding: 6px 14px;
+    border-radius: 8px;
+    color: #000;
+    text-decoration: none;
+}
+
+/* USER */
+.avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* DROPDOWN */
+.user-menu {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background: #111;
+    border-radius: 10px;
+    padding: 10px;
+    display: none;
+    flex-direction: column;
+}
+
+.dropdown-menu a {
+    color: #fff;
+    padding: 6px;
+    text-decoration: none;
+}
+
+/* CART DROPDOWN */
+.cart-dropdown {
+    position: fixed;
+    top: 80px;
+    right: 40px;
+    background: #111;
+    padding: 15px;
+    border-radius: 12px;
+    display: none;
+    width: 220px;
+}
+
+.signup-icon {
+    background: linear-gradient(135deg, #43e97b, #38f9d7);
+    color: #000 !important;
+}
+
+.signup-icon:hover {
+    transform: translateY(-2px);
+}
+
+.nav-right .nav-icon {
+    background: rgba(255,255,255,0.05);
+}
+
+/*================================= Login ====================================*/
+/* HERO */
+.hero {
+    position: relative;
+    height: 90vh;
+    background: url('https://source.unsplash.com/1600x900/?travel,luxury') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6));
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+}
+
+.hero h1 {
+    font-size: 55px;
+}
+
+.hero p {
+    color: #ccc;
+    margin-top: 10px;
+}
+
+/* Buttons */
+.btn-primary {
+    background: linear-gradient(135deg, #ff6b00, #ffb347);
+    padding: 12px 25px;
+    border-radius: 8px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.btn-secondary {
+    border: 1px solid #fff;
+    padding: 12px 25px;
+    border-radius: 8px;
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Section */
+.section-title {
+    text-align: center;
+    margin: 50px 0 20px;
+    color: #fff;
+}
+
+/* FEATURED */
+.featured-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 0 40px;
+}
+
+.featured-card {
+    background: #1e1e1e;
+    border-radius: 12px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.featured-img {
+    height: 150px;
+    background: url('https://source.unsplash.com/600x400/?travel') center/cover;
+}
+
+/* FEATURES */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 40px;
+}
+
+.feature-card {
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* TESTIMONIALS */
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 40px;
+}
+
+.testimonial-card {
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* CTA */
+.cta {
+    text-align: center;
+    padding: 50px;
+    background: #111;
+}
+
+/* Hover Effects */
+.featured-card:hover,
+.feature-card:hover,
+.testimonial-card:hover {
+    transform: translateY(-8px);
+    transition: 0.3s;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .featured-grid,
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .testimonial-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 /*================================= Login ====================================*/
 .login-container {
     display: flex;
